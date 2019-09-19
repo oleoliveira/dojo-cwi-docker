@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  webapp:
+    container_name: webapp
+    build:
+      context: .
+      dockerfile: Dockerfile.develop
+    volumes:
+      - .:/webapp
+    ports:
+      - "5000:3000"

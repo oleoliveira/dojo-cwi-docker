@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+      - SA_PASSWORD=1w99xiuXRlzYM5KTxh36!
+    ports:
+      - "1433:1433"
+
+  cwi.dojo:
+    image: cwidojo:${TAG:-latest}
+    container_name: cwidojo
+    build:
+      context: .
+      dockerfile: develop.Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqlserver
